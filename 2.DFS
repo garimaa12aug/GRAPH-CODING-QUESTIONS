@@ -1,0 +1,30 @@
+void finddfs(vector<int> g[],int i,int n,vector<int>&ans,vector<bool>&vis)
+{
+    if(vis[i] ==1)
+    return;
+    ans.push_back(i);
+    vis[i] =1;
+    for(int j=0;j<g[i].size();j++)
+    {
+        if(vis[g[i][j]] ==0)
+        {
+            finddfs(g,g[i][j],n,ans,vis);
+        }
+    }
+}
+
+vector <int> dfs(vector<int> g[], int N)
+{
+    
+    vector<int>ans;
+    vector<bool>vis(N,0);
+    for(int i=0;i<N;i++)
+    {
+        if(vis[i] == 0)
+        finddfs(g,i,N,ans,vis);
+    }
+    
+    // Your code here
+    return ans;
+
+}
