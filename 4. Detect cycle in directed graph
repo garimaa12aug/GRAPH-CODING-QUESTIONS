@@ -1,3 +1,40 @@
+//with color array
+bool dfs_visit(int i, int V, vector<int> adj[], int color[])
+{
+    if(color[i] ==1)
+    return 1;
+    color[i]=1;
+    for(int j=0;j<adj[i].size();j++)
+    {
+        if(color[adj[i][j]] == 1)
+        return 1;
+        if(color[adj[i][j]] ==0 && dfs_visit(adj[i][j],V,adj,color) )
+        return 1;
+        
+    }
+    color[i]=2;
+    return 0;
+}
+
+bool isCyclic(int V, vector<int>adj[])
+{
+   int color[V]={0};
+   for(int i =0;i<V;i++)
+    {  
+        if(color[i] ==0)
+    {
+      if(dfs_visit(i,V,adj,color))
+      return 1;
+    }
+    }
+    return 0;
+    
+    // Your code here
+}
+
+**************************************************************************************************************************************
+
+// with two supporting vectors
 bool dfs_visit(int i, int V, vector<int> adj[],bool visited[], bool color[])
 {
   
